@@ -5,11 +5,11 @@ import { createBlog } from '../reducers/blogReducer'
 const BlogForm = (props) => {
     const create = (event) => {
         event.preventDefault()
-        const newTitle = event.target.title.value
-        const newAuthor = event.target.author.value
+        const title = event.target.title.value
+        const author = event.target.author.value
         const newBlog = {
-            title: newTitle,
-            author: newAuthor,
+            title,
+            author,
             url: 'www.someurl.com',
             likes: 0,
             user: 1
