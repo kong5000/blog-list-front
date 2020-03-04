@@ -1,6 +1,20 @@
 import React from 'react'
+import { userReducer, login} from '../reducers/userReducer'
+import { connect } from 'react-redux'
 
-const Login = ({handleLogin, username, onUsernameChange, password, onPasswordChange}) => {
+const Login = (props) => {
+    const username = props.username
+    const onUsernameChange = props.onUsernameChange
+    const password = props.password
+    const onPasswordChange = props.onPasswordChange
+    
+    const handleLogin = (event) => {
+        event.preventDefault()
+        const usernameLogin = event.target.username.value
+        const passwordLogin = event.target.password.value
+        props.login(usernameLogin, passwordLogin)
+    }
+
     return(
         <form onSubmit={handleLogin}>
             <div>
@@ -8,7 +22,7 @@ const Login = ({handleLogin, username, onUsernameChange, password, onPasswordCha
                 <input
                 type="text"
                 value={username}
-                name="Username"
+                name="username"
                 onChange={(event) => onUsernameChange(event)}
                 ></input>
             </div>
@@ -17,7 +31,7 @@ const Login = ({handleLogin, username, onUsernameChange, password, onPasswordCha
                 <input
                 type="password"
                 value={password}
-                name="Password"
+                name="password"
                 onChange={(event) => onPasswordChange(event)}
                 ></input>
             </div>
@@ -26,5 +40,9 @@ const Login = ({handleLogin, username, onUsernameChange, password, onPasswordCha
     )
 }
 
+const mapDispatchToProps = {
+    login
+}
 
-export default Login
+const ConnectedLogin = connect(null, mapDispatchToProps)(Login)
+export default ConnectedLogin

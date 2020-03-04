@@ -4,13 +4,18 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import blogReducer from './reducers/blogReducer'
+import userReducer from './reducers/userReducer'
 
 //Thunk allows action creators to do aync tasks
 import thunk from 'redux-thunk'
 
-const store = createStore(blogReducer, applyMiddleware(thunk))
+const reducer = combineReducers({
+    blogs: blogReducer,
+    user: userReducer
+})
+const store = createStore(reducer, applyMiddleware(thunk))
 
 //Wrapping App in a Provider so store does not need to be passed down in props.
 

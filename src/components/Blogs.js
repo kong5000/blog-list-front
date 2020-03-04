@@ -12,7 +12,7 @@ const Blogs = (({blogs}) => {
 
 const mapStateToProps = (state) => {
     return{
-        blogs: state
+        blogs: state.blogs
     }
 }
 

@@ -13,7 +13,6 @@ import { connect } from 'react-redux'
 
 const App = (props) => {
   const [errorMessage, setErrorMessage] = useState(null)
-  const [user, setUser] = useState(null)
 
   /*Using custom hooks so this file doesn't need to take care of 
     username and password states and their respective on change handlers
@@ -26,7 +25,7 @@ const App = (props) => {
 
   const handleLogout = () => {
     window.localStorage.removeItem('loggedInUser')
-    setUser(null)
+   //logout props
   }
 
 
@@ -37,7 +36,7 @@ const App = (props) => {
       author: author.value,
       url: 'www.someurl.com',
       likes: 0,
-      user: user._id
+      user: props.user._id
     }
     const postedBlog = await blogsService.createBlog(newBlog)
 
@@ -60,7 +59,7 @@ const App = (props) => {
         'loggedInUser', JSON.stringify(user)
       )
       blogsService.setToken(user.token)
-      setUser(user)
+     
       username.clear()
       password.clear()
     } catch (exception) {
@@ -76,7 +75,8 @@ const App = (props) => {
     const loggedInUserJSON = window.localStorage.getItem('loggedInUser')
     if (loggedInUserJSON) {
       const user = JSON.parse(loggedInUserJSON)
-      setUser(user)
+      //Todo props.setUser here
+
       blogsService.setToken(user.token)
       console.log('setting initial token', user.token)
     }
@@ -90,7 +90,7 @@ const App = (props) => {
 
   return (
     <div>
-      {user === null &&
+      {props.user === null &&
         <Login
           handleLogin={handleLogin}
           username={username.value}
@@ -99,7 +99,7 @@ const App = (props) => {
           onPasswordChange={password.onChange}>
         </Login>
       }
-      {user !== null &&
+      {props.user !== null &&
         <div>
           <Togglable buttonLabel="new note">
             <BlogForm
@@ -122,5 +122,12 @@ const mapDispatchToProps = {
   initializeBlogs
 }
 
-const ConnectedApp = connect(null, mapDispatchToProps)(App)
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App)
 export default ConnectedApp;
