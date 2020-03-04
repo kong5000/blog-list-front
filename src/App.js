@@ -25,25 +25,7 @@ const App = (props) => {
 
   const handleLogout = () => {
     window.localStorage.removeItem('loggedInUser')
-   //logout props
-  }
-
-
-  const createBlog = async (event) => {
-    event.preventDefault()
-    const newBlog = {
-      title: title.value,
-      author: author.value,
-      url: 'www.someurl.com',
-      likes: 0,
-      user: props.user._id
-    }
-    const postedBlog = await blogsService.createBlog(newBlog)
-
-    //Todo set the redux store here
-
-    title.clear()
-    author.clear()
+    //logout props
   }
 
   const handleLogin = async (event) => {
@@ -59,7 +41,7 @@ const App = (props) => {
         'loggedInUser', JSON.stringify(user)
       )
       blogsService.setToken(user.token)
-     
+
       username.clear()
       password.clear()
     } catch (exception) {
@@ -102,13 +84,7 @@ const App = (props) => {
       {props.user !== null &&
         <div>
           <Togglable buttonLabel="new note">
-            <BlogForm
-              title={title.value}
-              author={author.value}
-              onTitleChange={title.onChange}
-              onAuthorChange={author.onChange}
-              onSubmit={createBlog}
-            ></BlogForm>
+            <BlogForm />
           </Togglable>
           <Blogs></Blogs>
           <button onClick={handleLogout}>logout</button>
