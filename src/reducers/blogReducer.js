@@ -13,10 +13,22 @@ export const initializeBlogs = () => {
     }
 }
 
+export const createBlog = (blog) => {
+    return async dispatch => {
+        const postedBlog = await blogService.createBlog(blog)
+        dispatch({
+            type: "CREATE_BLOG",
+            blog: postedBlog
+        })
+    }
+}
+
 const blogReducer  = (state=[], action) => {
     switch(action.type){
         case 'INIT_BLOGS':
             return action.data
+        case 'CREATE_BLOG':
+            return state.concat(action.blog)
         default:
     }
     return state

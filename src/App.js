@@ -12,11 +12,8 @@ import { connect } from 'react-redux'
 
 
 const App = (props) => {
-
-  const [blogs, setBlogs] = useState([])
   const [errorMessage, setErrorMessage] = useState(null)
   const [user, setUser] = useState(null)
-
 
   /*Using custom hooks so this file doesn't need to take care of 
     username and password states and their respective on change handlers
@@ -43,7 +40,9 @@ const App = (props) => {
       user: user._id
     }
     const postedBlog = await blogsService.createBlog(newBlog)
-    setBlogs(blogs.concat(postedBlog))
+
+    //Todo set the redux store here
+
     title.clear()
     author.clear()
   }
@@ -70,14 +69,8 @@ const App = (props) => {
         setErrorMessage(null)
       }, 3000)
     }
-
   }
 
-  useEffect(() => {
-    blogsService
-      .getAll()
-      .then(initialBlogs => setBlogs(initialBlogs))
-  }, [])
 
   useEffect(() => {
     const loggedInUserJSON = window.localStorage.getItem('loggedInUser')
@@ -117,7 +110,7 @@ const App = (props) => {
               onSubmit={createBlog}
             ></BlogForm>
           </Togglable>
-          <Blogs blogs={blogs}></Blogs>
+          <Blogs></Blogs>
           <button onClick={handleLogout}>logout</button>
         </div>
       }
