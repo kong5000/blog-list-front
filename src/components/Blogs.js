@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 const Blogs = (({blogs}) => {
 
@@ -9,4 +10,11 @@ const Blogs = (({blogs}) => {
     )
 })
 
-export default Blogs
+const mapStateToProps = (state) => {
+    return{
+        blogs: state
+    }
+}
+
+const ConnectedBlogs = connect(mapStateToProps)(Blogs)
+export default ConnectedBlogs

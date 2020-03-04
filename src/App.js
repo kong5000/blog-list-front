@@ -7,9 +7,11 @@ import Togglable from './components/Togglable'
 import blogsService from './services/blogs'
 import loginService from './services/login'
 import { useField } from './hooks'
+import { initializeBlogs } from './reducers/blogReducer'
+import { connect } from 'react-redux'
 
 
-const App = () => {
+const App = (props) => {
 
   const [blogs, setBlogs] = useState([])
   const [errorMessage, setErrorMessage] = useState(null)
@@ -88,6 +90,10 @@ const App = () => {
 
   }, [])
 
+  useEffect(() => {
+    props.initializeBlogs()
+  })
+
 
   return (
     <div>
@@ -119,4 +125,9 @@ const App = () => {
   );
 }
 
-export default App;
+const mapDispatchToProps = {
+  initializeBlogs
+}
+
+const ConnectedApp = connect(null, mapDispatchToProps)(App)
+export default ConnectedApp;
