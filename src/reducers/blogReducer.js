@@ -23,12 +23,24 @@ export const createBlog = (blog) => {
     }
 }
 
+export const postComment = (id, comment) => {
+    return async dispatch => {
+        const updatedBlog = await blogService.postComment(id, comment)
+        dispatch({
+            type: "COMMENT",
+            blog: updatedBlog
+        })
+    }
+}
+
 const blogReducer  = (state=[], action) => {
     switch(action.type){
         case 'INIT_BLOGS':
             return action.data
         case 'CREATE_BLOG':
             return state.concat(action.blog)
+        case 'COMMENT':
+            return state.map(blog => blog._id !== action.blog._id ? blog : action.blog)
         default:
     }
     return state

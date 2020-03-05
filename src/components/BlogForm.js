@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { createBlog } from '../reducers/blogReducer'
+import { createBlog, postComment } from '../reducers/blogReducer'
 
 const BlogForm = (props) => {
     const create = (event) => {
@@ -12,7 +12,8 @@ const BlogForm = (props) => {
             author,
             url: 'www.someurl.com',
             likes: 0,
-            user: props.user._id
+            user: props.user._id,
+            comments: []
         }
         props.createBlog(newBlog)
         event.target.title.value = ''
@@ -40,7 +41,8 @@ const BlogForm = (props) => {
     )
 }
 const mapDispatchToProps = {
-    createBlog
+    createBlog,
+    postComment
 }
 
 const mapStateToProps = (state) =>{

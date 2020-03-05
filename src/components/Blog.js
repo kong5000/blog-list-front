@@ -7,8 +7,12 @@ const Blog = ({ blog }) => {
     return (
         <div>
             <h2>{blog.title}</h2>
-            <div>Likes{blog.likes}</div>
-            <div>Posted By{blog.user.name}</div>
+            <div>Likes {blog.likes}</div>
+            <div>Posted By {blog.user.username}</div>
+            <ul>
+                {blog.comments.map(comment =>
+                    <li>{comment}</li>)}
+            </ul>
         </div>
     )
 }

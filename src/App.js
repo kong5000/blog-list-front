@@ -22,7 +22,7 @@ const App = (props) => {
     usersService.getUsers().then(
       userList => setUsers(userList)
     )
-  },[])
+  }, [])
 
   const handleLogout = () => {
     window.localStorage.removeItem('loggedInUser')
@@ -39,7 +39,7 @@ const App = (props) => {
 
   useEffect(() => {
     props.initializeBlogs()
-  },[])
+  }, [])
 
 
   const userById = (id) => {
@@ -59,7 +59,7 @@ const App = (props) => {
             <BlogForm />
           </Togglable>
           <BrowserRouter>
-            <Menu/>
+            <Menu />
             <Route exact path="/api/users/:id" render={({ match }) =>
               <User user={userById(match.params.id)} />
             } />
@@ -67,9 +67,9 @@ const App = (props) => {
               <Blog blog={blogById(match.params.id)}></Blog>
             } />
             <Route exact path="/api/blogs" render={() =>
-            <Blogs></Blogs>}/>
+              <Blogs></Blogs>} />
             <Route exact path="/api/users" render={() =>
-            <Users users={users}></Users>}/>
+              <Users users={users}></Users>} />
           </BrowserRouter>
           <button onClick={handleLogout}>logout</button>
         </div>
