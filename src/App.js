@@ -51,13 +51,14 @@ const App = (props) => {
   }
 
   return (
-    <div>
+    <div className="container">
       {props.user === null && <Login />}
       {props.user !== null &&
         <div>
           <Togglable buttonLabel="new note">
             <BlogForm />
           </Togglable>
+          <button onClick={handleLogout}>logout</button>
           <BrowserRouter>
             <Menu />
             <Route exact path="/api/users/:id" render={({ match }) =>
@@ -71,7 +72,6 @@ const App = (props) => {
             <Route exact path="/api/users" render={() =>
               <Users users={users}></Users>} />
           </BrowserRouter>
-          <button onClick={handleLogout}>logout</button>
         </div>
       }
     </div>

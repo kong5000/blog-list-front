@@ -12,7 +12,7 @@ const Login = (props) => {
     }
     return (
         <div>
-            <h2>login</h2>
+            <h2>Login</h2>
             <Form onSubmit={handleLogin}>
                 <Form.Group>
                     <Form.Label>username</Form.Label>
