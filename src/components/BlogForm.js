@@ -12,7 +12,7 @@ const BlogForm = (props) => {
             author,
             url: 'www.someurl.com',
             likes: 0,
-            user: 1
+            user: props.user._id
         }
         props.createBlog(newBlog)
         event.target.title.value = ''
@@ -42,5 +42,11 @@ const BlogForm = (props) => {
 const mapDispatchToProps = {
     createBlog
 }
-const ConnectedBlogForm = connect(null, mapDispatchToProps)(BlogForm)
+
+const mapStateToProps = (state) =>{
+    return{
+        user: state.user
+    }
+}
+const ConnectedBlogForm = connect(mapStateToProps, mapDispatchToProps)(BlogForm)
 export default ConnectedBlogForm
