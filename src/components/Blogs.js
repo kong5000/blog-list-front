@@ -11,7 +11,7 @@ const Blogs = (({ blogs }) => {
                 {blogs.map(blog =>
                     <tr key={blog._id}>
                         <td>
-                            <Link to={`/api/blogs/${blog._id}`}>{blog.title}</Link>
+                            <Link to={`/blogs/${blog._id}`}>{blog.title}</Link>
                         </td>
                     </tr>
                 )}

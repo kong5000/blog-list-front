@@ -61,15 +61,15 @@ const App = (props) => {
           <button onClick={handleLogout}>logout</button>
           <BrowserRouter>
             <Menu />
-            <Route exact path="/api/users/:id" render={({ match }) =>
+            <Route exact path="/users/:id" render={({ match }) =>
               <User user={userById(match.params.id)} />
             } />
-            <Route exact path="/api/blogs/:id" render={({ match }) =>
+            <Route exact path="/blogs/:id" render={({ match }) =>
               <Blog blog={blogById(match.params.id)}></Blog>
             } />
-            <Route exact path="/api/blogs" render={() =>
+            <Route exact path="/blogs" render={() =>
               <Blogs></Blogs>} />
-            <Route exact path="/api/users" render={() =>
+            <Route exact path="/users" render={() =>
               <Users users={users}></Users>} />
           </BrowserRouter>
         </div>
