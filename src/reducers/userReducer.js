@@ -37,12 +37,30 @@ export const setUser = (user) => {
 
 export const createUser = (username, password) => {
     return async dispatch => {
-        const user = {username, password, name:"user made with sign up form"}
-        const newUser = await userService.createUser(user)
-        dispatch({
-            type: "CREATE_USER",
-            user: newUser
-        })
+
+        try {
+            const user = { username, password, name: username }
+            const newUser = await userService.createUser(user)
+
+            const newUserLoggedIn = await loginService.login({
+                username,
+                password
+            })
+
+            window.localStorage.setItem(
+                'loggedInUser', JSON.stringify(newUserLoggedIn)
+            )
+
+            blogsService.setToken(newUserLoggedIn.token)
+
+            dispatch({
+                type: 'LOGIN',
+                user: newUserLoggedIn
+            })
+        }
+        catch(exception){
+            console.log(exception)
+        }
     }
 }
 
@@ -58,6 +76,8 @@ const userReducer = (state = null, action) => {
         case 'LOGIN':
             return action.user
         case 'SET_USER':
+            return action.user
+        case 'CREATE_USER':
             return action.user
         case 'LOGOUT':
             return null
