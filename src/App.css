@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+#homepage{
+  display: flex;
+}
+
+#homepage-welcome{
+  width: 50%;
+  height: 100vh;
+  background-color: burlywood;
+}
+
+#login{
+  width: 50%;
+  height: 100vh;
+  padding: 10%;
+}

@@ -13,6 +13,7 @@ import Blog from './components/Blog'
 import Menu from './components/Menu'
 import usersService from './services/users'
 import { BrowserRouter, Route } from 'react-router-dom'
+import HomePage from './components/HomePage';
 
 const App = (props) => {
 
@@ -51,8 +52,8 @@ const App = (props) => {
   }
 
   return (
-    <div className="container">
-      {props.user === null && <Login />}
+    <div>
+      {props.user === null && <HomePage />}
       {props.user !== null &&
         <div>
           <Togglable buttonLabel="new note">

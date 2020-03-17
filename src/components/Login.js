@@ -10,8 +10,31 @@ const Login = (props) => {
         const passwordLogin = event.target.password.value
         props.login(usernameLogin, passwordLogin)
     }
+    const handleSignUp = (event) => {
+        event.preventDefault()
+        const usernameSignUp = event.target.username.value
+        const passwordSignUp = event.target.password.value
+    }
     return (
-        <div>
+        <div id="login">
+            <h2>SignUp</h2>
+            <Form onSubmit={handleSignUp}>
+                <Form.Group>
+                    <Form.Label>username</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="username"
+                    />
+                    <Form.Label>password</Form.Label>
+                    <Form.Control
+                        type="password"
+                        name="password"
+                    />
+                    <Button variant="primary" type="submit">
+                        sign up
+                    </Button>
+                </Form.Group>
+            </Form>
             <h2>Login</h2>
             <Form onSubmit={handleLogin}>
                 <Form.Group>
@@ -25,7 +48,7 @@ const Login = (props) => {
                         type="password"
                         name="password"
                     />
-                    <Button variant="primary" type ="submit">
+                    <Button variant="primary" type="submit">
                         login
                     </Button>
                 </Form.Group>
