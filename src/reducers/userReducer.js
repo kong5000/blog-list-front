@@ -1,5 +1,6 @@
 import loginService from '../services/login'
 import blogsService from '../services/blogs'
+import userService from '../services/users'
 
 export const login = (username, password) => {
     return async dispatch => {
@@ -28,14 +29,26 @@ export const login = (username, password) => {
 
 export const setUser = (user) => {
     blogsService.setToken(user.token)
-    return{
+    return {
         type: 'SET_USER',
         user
     }
 }
 
+export const createUser = (username, password) => {
+    return async dispatch => {
+        const user = {username, password, name:"user made with sign up form"}
+        const newUser = await userService.createUser(user)
+        dispatch({
+            type: "CREATE_USER",
+            user: newUser
+        })
+    }
+}
+
+
 export const logout = () => {
-    return{
+    return {
         type: 'LOGOUT'
     }
 }

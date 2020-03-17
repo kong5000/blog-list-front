@@ -1,5 +1,5 @@
 import React from 'react'
-import { login } from '../reducers/userReducer'
+import { login, createUser } from '../reducers/userReducer'
 import { connect } from 'react-redux'
 import { Form, Button } from 'react-bootstrap'
 
@@ -12,8 +12,9 @@ const Login = (props) => {
     }
     const handleSignUp = (event) => {
         event.preventDefault()
-        const usernameSignUp = event.target.username.value
-        const passwordSignUp = event.target.password.value
+        const usernameSignUp = event.target.usernameSignUp.value
+        const passwordSignUp = event.target.passwordSignUp.value
+        props.createUser(usernameSignUp, passwordSignUp)
     }
     return (
         <div id="login">
@@ -23,12 +24,12 @@ const Login = (props) => {
                     <Form.Label>username</Form.Label>
                     <Form.Control
                         type="text"
-                        name="username"
+                        name="usernameSignUp"
                     />
                     <Form.Label>password</Form.Label>
                     <Form.Control
                         type="password"
-                        name="password"
+                        name="passwordSignUp"
                     />
                     <Button variant="primary" type="submit">
                         sign up
@@ -78,7 +79,8 @@ const Login = (props) => {
 }
 
 const mapDispatchToProps = {
-    login
+    login,
+    createUser
 }
 
 const ConnectedLogin = connect(null, mapDispatchToProps)(Login)
