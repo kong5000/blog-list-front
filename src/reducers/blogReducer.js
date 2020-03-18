@@ -33,8 +33,14 @@ export const postComment = (id, comment) => {
     }
 }
 
-export const upVoteBlog = () =>{
-    console.log('UPVOTE SHOULD HAPPEN')
+export const updateBlog = (blog) =>{
+    return async dispatch => {
+        const updatedBlog = await blogService.updateBlog(blog._id, blog)
+        dispatch({
+            type: "UPDATE",
+            blog: updatedBlog
+        })
+    }
 }
 
 const blogReducer  = (state=[], action) => {
@@ -44,6 +50,8 @@ const blogReducer  = (state=[], action) => {
         case 'CREATE_BLOG':
             return state.concat(action.blog)
         case 'COMMENT':
+            return state.map(blog => blog._id !== action.blog._id ? blog : action.blog)
+        case 'UPDATE':
             return state.map(blog => blog._id !== action.blog._id ? blog : action.blog)
         default:
     }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Table } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
-import { upVoteBlog } from '../reducers/blogReducer'
+import { updateBlog } from '../reducers/blogReducer'
 
 const Blogs = (props => {
     const styleRow = (index) => {
@@ -15,15 +15,15 @@ const Blogs = (props => {
     const upVote = (id) => {
         return( () => {
             const votedBlog = props.blogs.find(blog => blog._id === id)
-            console.log(id)
-            console.log(votedBlog)
+            const updatedBlog = {...votedBlog, likes: votedBlog.likes + 1};
+            props.updateBlog(updatedBlog)
         })
     }
     const downVote = (id) => {
         return( () => {
             const votedBlog = props.blogs.find(blog => blog._id === id)
-            console.log(id)
-            console.log(votedBlog)
+            const updatedBlog = {...votedBlog, likes: votedBlog.likes - 1};
+            props.updateBlog(updatedBlog)
         })
     }
 
@@ -57,7 +57,7 @@ const Blogs = (props => {
 })
 
 const mapDispatchToProps = {
-    upVoteBlog,
+    updateBlog,
 }
 
 const mapStateToProps = (state) => {
