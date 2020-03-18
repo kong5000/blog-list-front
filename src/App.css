@@ -125,3 +125,30 @@
   font-weight: bold;
   border: none;
 }
+
+#row-light{
+  background-color: #fdefc0a6; 
+  color: #50a387;
+}
+#row-dark{
+  background-color: #50a387b6;
+}
+
+#content-light{
+  color: #fdefc0;
+  font-size: large;
+}
+
+#content-dark{
+  color: #50a387;
+  font-size: large;
+}
+
+.post-likes{
+  display: inline-block;
+  margin: 10px;
+}
+
+.fas{
+  margin: 5px;
+}

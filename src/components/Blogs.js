@@ -3,8 +3,29 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Table } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
+import { upVoteBlog } from '../reducers/blogReducer'
 
-const Blogs = (({ blogs }) => {
+const Blogs = (props => {
+    const styleRow = (index) => {
+        return (index % 2 === 0 ? 'row-light' : 'row-dark');
+    }
+    const styleContent = (index) => {
+        return (index % 2 === 0 ? 'content-dark' : 'content-light');
+    }
+    const upVote = (id) => {
+        return( () => {
+            const votedBlog = props.blogs.find(blog => blog._id === id)
+            console.log(id)
+            console.log(votedBlog)
+        })
+    }
+    const downVote = (id) => {
+        return( () => {
+            const votedBlog = props.blogs.find(blog => blog._id === id)
+            console.log(id)
+            console.log(votedBlog)
+        })
+    }
 
     return (
         <div class="blog-page">
@@ -14,10 +35,18 @@ const Blogs = (({ blogs }) => {
             </div>
             <Table striped>
                 <tbody>
-                    {blogs.map(blog =>
-                        <tr key={blog._id}>
+                    {props.blogs.map((blog, index) =>
+                        <tr key={blog._id} id={styleRow(index)}>
                             <td>
-                                <Link to={`/blogs/${blog._id}`}>{blog.title}</Link>
+                                <button onClick={downVote(blog._id)}>
+                                    <i class="fas fa-arrow-down"></i>
+                                </button>
+                                <button onClick={upVote(blog._id)}>
+                                    <i class="fas fa-arrow-up"></i>
+                                </button>
+                                <div class="post-likes">Votes: {blog.likes}</div>
+                                <Link to={`/blogs/${blog._id}`} id={styleContent(index)}>{blog.title}</Link>
+                                <div>{blog.date}</div>
                             </td>
                         </tr>
                     )}
@@ -27,11 +56,15 @@ const Blogs = (({ blogs }) => {
     )
 })
 
+const mapDispatchToProps = {
+    upVoteBlog,
+}
+
 const mapStateToProps = (state) => {
     return {
         blogs: state.blogs
     }
 }
 
-const ConnectedBlogs = connect(mapStateToProps)(Blogs)
+const ConnectedBlogs = connect(mapStateToProps, mapDispatchToProps)(Blogs)
 export default ConnectedBlogs

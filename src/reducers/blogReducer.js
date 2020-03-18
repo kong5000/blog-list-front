@@ -33,6 +33,10 @@ export const postComment = (id, comment) => {
     }
 }
 
+export const upVoteBlog = () =>{
+    console.log('UPVOTE SHOULD HAPPEN')
+}
+
 const blogReducer  = (state=[], action) => {
     switch(action.type){
         case 'INIT_BLOGS':
