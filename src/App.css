@@ -44,11 +44,84 @@
 #homepage-welcome{
   width: 50%;
   height: 100vh;
-  background-color: burlywood;
+  background-color: #50a387;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #login{
   width: 50%;
   height: 100vh;
   padding: 10%;
+  background-color:	#fdefc0;
+}
+
+.form-button{
+  margin-top: 20px;
+}
+
+.signup-error{
+  font-size: 1.25rem;
+  color: red;
+  position: absolute;
+  top: 20px;
+  margin: 20px;
+}
+
+.home-header{
+  color: white;
+  position: absolute;
+  top: 0;
+  padding: 5%;
+  font-size: 5rem;
+}
+.site-info-list{
+  padding-top: 10%;
+}
+.site-info{
+  color: white;
+  line-height: 3rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 1100px){
+  .site-info{
+    display: none;
+  }
+  .home-header{
+    position: relative;
+  }
+}
+
+.form-button{
+  background-color:	#468502;
+  border: none;
+}
+
+#site-link{
+  color:#fdefc0
+}
+
+.blog-page-header{
+  background-color: #50a387;
+  padding: 1% 5%;
+}
+
+.blog-page-header-text{
+  display: inline-block;
+  color:#fdefc0;
+}
+.new-post-btn{
+  color:white;
+  position: absolute;
+  right: 10px;
+  margin: 10px;
+  display: inline-block;
+  background-color:#8bc230;
+  font-size: large;
+  font-weight: bold;
+  border: none;
 }
