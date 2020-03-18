@@ -27,6 +27,17 @@ const Blogs = (props => {
         })
     }
 
+    const sortBlogs = (blogs) => {
+        return(blogs.sort(function(a, b){
+            if(a.likes > b.likes){
+                return -1;
+            } else if(a.likes < b.likes){
+                return 1;
+            }
+            return 0;
+        }))
+    }
+
     return (
         <div class="blog-page">
             <div class="blog-page-header">
@@ -35,7 +46,7 @@ const Blogs = (props => {
             </div>
             <Table striped>
                 <tbody>
-                    {props.blogs.map((blog, index) =>
+                    {sortBlogs(props.blogs).map((blog, index) =>
                         <tr key={blog._id} id={styleRow(index)}>
                             <td>
                                 <button onClick={downVote(blog._id)}>
