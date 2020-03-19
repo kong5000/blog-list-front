@@ -114,10 +114,16 @@
   display: inline-block;
   color:#fdefc0;
 }
-.new-post-btn{
-  color:white;
+
+.btn-container{
+  display: inline-block;
   position: absolute;
   right: 10px;
+}
+
+.new-post-btn{
+  color:white;
+  position: relative;
   margin: 10px;
   display: inline-block;
   background-color:#8bc230;

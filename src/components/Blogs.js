@@ -5,8 +5,14 @@ import { Table } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { updateBlog } from '../reducers/blogReducer'
 import BlogForm from './BlogForm'
+import { logout } from '../reducers/userReducer'
 
 const Blogs = (props => {
+    const handleLogout = () => {
+        window.localStorage.removeItem('loggedInUser')
+        props.logout()
+    }
+
     const styleRow = (index) => {
         return (index % 2 === 0 ? 'row-light' : 'row-dark');
     }
@@ -14,25 +20,25 @@ const Blogs = (props => {
         return (index % 2 === 0 ? 'content-dark' : 'content-light');
     }
     const upVote = (id) => {
-        return( () => {
+        return (() => {
             const votedBlog = props.blogs.find(blog => blog._id === id)
-            const updatedBlog = {...votedBlog, likes: votedBlog.likes + 1};
+            const updatedBlog = { ...votedBlog, likes: votedBlog.likes + 1 };
             props.updateBlog(updatedBlog)
         })
     }
     const downVote = (id) => {
-        return( () => {
+        return (() => {
             const votedBlog = props.blogs.find(blog => blog._id === id)
-            const updatedBlog = {...votedBlog, likes: votedBlog.likes - 1};
+            const updatedBlog = { ...votedBlog, likes: votedBlog.likes - 1 };
             props.updateBlog(updatedBlog)
         })
     }
 
     const sortBlogs = (blogs) => {
-        return(blogs.sort(function(a, b){
-            if(a.likes > b.likes){
+        return (blogs.sort(function (a, b) {
+            if (a.likes > b.likes) {
                 return -1;
-            } else if(a.likes < b.likes){
+            } else if (a.likes < b.likes) {
                 return 1;
             }
             return 0;
@@ -43,7 +49,12 @@ const Blogs = (props => {
         <div class="blog-page">
             <div class="blog-page-header">
                 <h1 class="blog-page-header-text">PostAp</h1>
+                <div className="btn-container">
+                <Button className="new-post-btn" variant="primary" onClick={handleLogout}>
+                    logout
+                </Button>
                 <BlogForm />
+                </div>
             </div>
             <Table striped>
                 <tbody>
@@ -70,6 +81,7 @@ const Blogs = (props => {
 
 const mapDispatchToProps = {
     updateBlog,
+    logout
 }
 
 const mapStateToProps = (state) => {

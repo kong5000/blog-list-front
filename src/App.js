@@ -25,11 +25,6 @@ const App = (props) => {
     )
   }, [])
 
-  const handleLogout = () => {
-    window.localStorage.removeItem('loggedInUser')
-    props.logout()
-  }
-
   useEffect(() => {
     const loggedInUserJSON = window.localStorage.getItem('loggedInUser')
     if (loggedInUserJSON) {
@@ -56,7 +51,6 @@ const App = (props) => {
       {props.user === null && <HomePage />}
       {props.user !== null &&
         <div>
-          <button onClick={handleLogout}>logout</button>
           <BrowserRouter>
             <Menu />
             <Route exact path="/users/:id" render={({ match }) =>
