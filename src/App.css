@@ -37,6 +37,10 @@
   }
 }
 
+body{
+  background-color: #fdefc098;
+}
+
 #homepage{
   display: flex;
 }
@@ -113,12 +117,25 @@
 .blog-page-header-text{
   display: inline-block;
   color:#fdefc0;
+  font-size: 4rem;
+  font-weight: bold;
 }
 
 .btn-container{
   display: inline-block;
   position: absolute;
   right: 10px;
+}
+
+.logout-btn{
+  color:#31725c;
+  position: relative;
+  margin: 10px;
+  display: inline-block;
+  background-color:#fdefc0;
+  font-size: large;
+  font-weight: bold;
+  border: none;
 }
 
 .new-post-btn{
@@ -140,21 +157,60 @@
   background-color: #50a3879f;
 }
 
+.table td{
+  padding-left: 3rem;
+  vertical-align: top;
+}
+
 #content-light{
+  padding-left: 1rem;
   color: #fdefc0;
-  font-size: large;
+  font-size: 2.25rem;
 }
 
 #content-dark{
+  padding-left: 1rem;
   color: #50a387;
-  font-size: large;
+  font-size: 2.25rem;
 }
 
-.post-likes{
-  display: inline-block;
-  margin: 10px;
+.upvote-btn{
+  margin: 0.3rem;
+  border-radius: 20%;
+  background-color: #31725c;
+  border-color: #31725c;
 }
 
+.downvote-btn{
+  margin: 0.3rem;
+  border-radius: 20%;
+  background-color:#8bc230;
+  border-color: #8bc230;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #0069d9;
+  border-color: none;
+}
+
+.btn-primary:hover {
+  color: #fff;
+
+  border-color: none;
+}
 .fas{
   margin: 5px;
+}
+
+.date{
+  color: #282c34;
+  margin: 0.25rem;
+}
+
+.likes-counter{
+  font-size: 1.3rem;
+  display: inline-block;
+  margin: 10px;
+  color:#31725c
 }

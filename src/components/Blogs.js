@@ -1,37 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { Table } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { updateBlog } from '../reducers/blogReducer'
 import BlogForm from './BlogForm'
 import { logout } from '../reducers/userReducer'
+import Row from './Row'
 
 const Blogs = (props => {
     const handleLogout = () => {
         window.localStorage.removeItem('loggedInUser')
         props.logout()
-    }
-
-    const styleRow = (index) => {
-        return (index % 2 === 0 ? 'row-light' : 'row-dark');
-    }
-    const styleContent = (index) => {
-        return (index % 2 === 0 ? 'content-dark' : 'content-light');
-    }
-    const upVote = (id) => {
-        return (() => {
-            const votedBlog = props.blogs.find(blog => blog._id === id)
-            const updatedBlog = { ...votedBlog, likes: votedBlog.likes + 1 };
-            props.updateBlog(updatedBlog)
-        })
-    }
-    const downVote = (id) => {
-        return (() => {
-            const votedBlog = props.blogs.find(blog => blog._id === id)
-            const updatedBlog = { ...votedBlog, likes: votedBlog.likes - 1 };
-            props.updateBlog(updatedBlog)
-        })
     }
 
     const sortBlogs = (blogs) => {
@@ -50,8 +29,8 @@ const Blogs = (props => {
             <div class="blog-page-header">
                 <h1 class="blog-page-header-text">PostAp</h1>
                 <div className="btn-container">
-                <Button className="new-post-btn" variant="primary" onClick={handleLogout}>
-                    logout
+                <Button className="logout-btn" variant="primary" onClick={handleLogout}>
+                    Logout
                 </Button>
                 <BlogForm />
                 </div>
@@ -59,19 +38,7 @@ const Blogs = (props => {
             <Table striped>
                 <tbody>
                     {sortBlogs(props.blogs).map((blog, index) =>
-                        <tr key={blog._id} id={styleRow(index)}>
-                            <td>
-                                <button onClick={downVote(blog._id)}>
-                                    <i class="fas fa-arrow-down"></i>
-                                </button>
-                                <button onClick={upVote(blog._id)}>
-                                    <i class="fas fa-arrow-up"></i>
-                                </button>
-                                <div class="post-likes">Votes: {blog.likes}</div>
-                                <Link to={`/blogs/${blog._id}`} id={styleContent(index)}>{blog.title}</Link>
-                                <div>{blog.date}</div>
-                            </td>
-                        </tr>
+                        <Row blog={blog} index={index} blogs={props.blogs}/>
                     )}
                 </tbody>
             </Table>

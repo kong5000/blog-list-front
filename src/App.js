@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Login from './components/Login'
 import Blogs from './components/Blogs'
-import BlogForm from './components/BlogForm'
-import Togglable from './components/Togglable'
 import { initializeBlogs } from './reducers/blogReducer'
 import { connect } from 'react-redux'
 import { setUser, logout } from './reducers/userReducer'
@@ -52,7 +50,6 @@ const App = (props) => {
       {props.user !== null &&
         <div>
           <BrowserRouter>
-            <Menu />
             <Route exact path="/users/:id" render={({ match }) =>
               <User user={userById(match.params.id)} />
             } />
