@@ -214,3 +214,41 @@ body{
   margin: 10px;
   color:#31725c
 }
+
+.modal-title{
+  display: inline-block;
+  color:#fdefc0;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.modal-header{
+  display: block;
+  text-align: center;
+  background-color: #31725c;
+}
+
+.modal-div{
+  text-align: center;
+}
+
+.modal-text{
+  text-align: center;
+  color:#31725c;
+  font-size: 1.2rem;
+}
+
+.modal-body{
+  background-color: #fdefc0;
+}
+
+.submit-post-btn{
+    display: inline-block;
+    color:white;
+    margin: auto;
+    display: inline-block;
+    background-color:#8bc230;
+    font-size: large;
+    font-weight: bold;
+    border: none;
+}

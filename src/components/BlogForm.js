@@ -13,7 +13,7 @@ const BlogForm = (props) => {
     const create = (event) => {
         event.preventDefault()
         const title = event.target.title.value
-        const author = event.target.author.value
+        const author = event.target.content.value
         const newBlog = {
             title,
             author,
@@ -24,7 +24,7 @@ const BlogForm = (props) => {
         }
         props.createBlog(newBlog)
         event.target.title.value = ''
-        event.target.author.value = ''
+        event.target.content.value = ''
         handleClose()
     }
 
@@ -33,28 +33,22 @@ const BlogForm = (props) => {
             <Button className="new-post-btn" variant="primary" onClick={handleShow}>
                 New Post
             </Button>
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                <form onSubmit={create}>
-                <div> title:
-                <input
-                        name="title"
-                        type="text"
-                    >
-                    </input>
+            <Modal className="modal" show={show} onHide={handleClose}>
+                <div className="modal-header">
+                    <h2 className="modal-title">New Post</h2>
                 </div>
-                <div> author:
-                <input
-                        name="author"
-                        type="text"
-                    >
-                    </input>
-                </div>
-                <button type="submit">create</button>
-            </form>
+                <Modal.Body className="modal-body">
+                    <form onSubmit={create}>
+                        <div className="modal-text">Title</div>
+                        <div className="modal-div">
+                            <input name="title" type="text"></input>
+                        </div>
+                        <div className="modal-text">Content</div>
+                        <div className="modal-div">
+                            <textarea name="content"></textarea>
+                        </div>
+                        <Button className="submit-post-btn"type="submit">create</Button>
+                    </form>
                 </Modal.Body>
             </Modal>
 
