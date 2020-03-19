@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { createBlog } from '../reducers/blogReducer'
+import Button from 'react-bootstrap/Button'
+import Modal from 'react-bootstrap/Modal'
 
 const BlogForm = (props) => {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     const create = (event) => {
         event.preventDefault()
         const title = event.target.title.value
@@ -18,34 +25,48 @@ const BlogForm = (props) => {
         props.createBlog(newBlog)
         event.target.title.value = ''
         event.target.author.value = ''
+        handleClose()
     }
 
     return (
-        <form onSubmit={create}>
-            <div> title:
+        <>
+            <Button className="new-post-btn" variant="primary" onClick={handleShow}>
+                New Post
+            </Button>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Modal heading</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <form onSubmit={create}>
+                <div> title:
                 <input
-                    name="title"
-                    type="text"
-                >
-                </input>
-            </div>
-            <div> author:
+                        name="title"
+                        type="text"
+                    >
+                    </input>
+                </div>
+                <div> author:
                 <input
-                    name="author"
-                    type="text"
-                >
-                </input>
-            </div>
-            <button type="submit">create</button>
-        </form>
+                        name="author"
+                        type="text"
+                    >
+                    </input>
+                </div>
+                <button type="submit">create</button>
+            </form>
+                </Modal.Body>
+            </Modal>
+
+        </>
     )
 }
 const mapDispatchToProps = {
     createBlog,
 }
 
-const mapStateToProps = (state) =>{
-    return{
+const mapStateToProps = (state) => {
+    return {
         user: state.user
     }
 }

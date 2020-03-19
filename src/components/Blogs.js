@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Table } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { updateBlog } from '../reducers/blogReducer'
+import BlogForm from './BlogForm'
 
 const Blogs = (props => {
     const styleRow = (index) => {
@@ -42,7 +43,7 @@ const Blogs = (props => {
         <div class="blog-page">
             <div class="blog-page-header">
                 <h1 class="blog-page-header-text">PostAp</h1>
-                <Button className="new-post-btn">New Post</Button>
+                <BlogForm />
             </div>
             <Table striped>
                 <tbody>

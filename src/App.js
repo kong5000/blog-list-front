@@ -56,9 +56,6 @@ const App = (props) => {
       {props.user === null && <HomePage />}
       {props.user !== null &&
         <div>
-          <Togglable buttonLabel="new note">
-            <BlogForm />
-          </Togglable>
           <button onClick={handleLogout}>logout</button>
           <BrowserRouter>
             <Menu />
